@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Salesforce Certifications</title>
+  <style>
+    :root {
+      --sf-blue: #00a1e0;
+      --sf-navy: #032d60;
+      --accent: #ff7a59;
+      --text: #0b1a2b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Salesforce Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #032d60 0%, #00a1e0 100%);
+      min-height: 100vh;
+      color: var(--text);
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header { text-align: center; color: #fff; margin-bottom: 3rem; max-width: 720px; }
+    header h1 { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+    header p { font-size: 1.1rem; opacity: 0.85; }
+    .certs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; width: 100%; max-width: 960px; }
+    .cert { background: #fff; border-radius: 20px; padding: 2rem; box-shadow: 0 20px 40px rgba(3,45,96,0.25); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .cert::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--sf-blue), var(--accent)); }
+    .cert:hover { transform: translateY(-8px); box-shadow: 0 28px 50px rgba(3,45,96,0.35); }
+    .badge { width: 84px; height: 84px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.25rem; color: #fff; margin-bottom: 1.25rem; box-shadow: 0 8px 16px rgba(0,0,0,0.15); }
+    .cert.pd1 .badge { background: linear-gradient(135deg, #00a1e0, #032d60); }
+    .cert.agent .badge { background: linear-gradient(135deg, #ff7a59, #ff3366); }
+    .cert h2 { font-size: 1.35rem; color: var(--sf-navy); margin-bottom: 0.5rem; }
+    .cert .tag { display: inline-block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--sf-blue); background: rgba(0,161,224,0.1); padding: 0.25rem 0.6rem; border-radius: 999px; margin-bottom: 1rem; }
+    .cert p { font-size: 0.95rem; line-height: 1.5; color: #415268; margin-bottom: 1.25rem; }
+    .cert .meta { display: flex; justify-content: space-between; font-size: 0.85rem; color: #6b7a90; border-top: 1px solid #e5eaf1; padding-top: 1rem; }
+    .cert .meta strong { color: var(--sf-navy); }
+    footer { margin-top: 3rem; color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Salesforce Certifications</h1>
+    <p>A showcase of earned Salesforce credentials.</p>
+  </header>
+  <main class="certs" id="certs"></main>
+  <footer>Built with Salesforce vibes.</footer>
+  <script>
+    const certifications = [
+      { id: "pd1", name: "Platform Developer 1", tag: "Developer", icon: "</>", description: "Validates skills in building custom applications on the Lightning Platform using Apex, Visualforce, and Lightning Components.", focus: "Apex & Lightning", level: "Intermediate" },
+      { id: "agent", name: "Agentforce Specialist", tag: "AI / Agents", icon: "✨", description: "Demonstrates expertise in designing, building, and deploying AI-powered agents with Agentforce on the Salesforce platform.", focus: "AI Agents", level: "Specialist" }
+    ];
+    const container = document.getElementById("certs");
+    container.innerHTML = certifications.map(cert => `
+      <article class="cert ${cert.id}">
+        <div class="badge">${cert.icon}</div>
+        <span class="tag">${cert.tag}</span>
+        <h2>${cert.name}</h2>
+        <p>${cert.description}</p>
+        <div class="meta">
+          <span>Focus: <strong>${cert.focus}</strong></span>
+          <span>Level: <strong>${cert.level}</strong></span>
+        </div>
+      </article>
+    `).join("");
+  </script>
+</body>
+</html>
